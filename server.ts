@@ -21,8 +21,8 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.post('/userData', (req: Request, res: Response) => {
-    const query: string = `select * from userDB where userID = ${req.body.id}`;
-    dbc.query(query, (err, rows) =>{
+    const query: string = "select * from userDB where userID = ? and password = ?";
+    dbc.query(query, [req.query.id, req.query.password] ,(err, rows) =>{
         if(err) return console.log(err);
         res.send(rows);
     })
