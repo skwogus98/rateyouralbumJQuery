@@ -1,0 +1,6 @@
+npm i -g typescript nodemon ts-node
+npm i express mysql cors body-parser @types/express @types/mysql @types/cors @types/body-parser
+npm i -g typescript nodemon ts-node
+npm i -g npm
+npm i express
+npm i mysql
