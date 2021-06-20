@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express"
 import mysql from "mysql"
 import cors from "cors"
+import bodyParser from "body-parser"
 
 const app = express()
 app.use(cors())
@@ -11,6 +12,8 @@ const dbc = mysql.createConnection({
 	password: 'mysql1234',
 	database: 'musicDB'
 })
+
+app.use(bodyParser.json())
 
 app.listen('3000', () => {
 	console.log('Server Started')
