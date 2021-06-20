@@ -1,10 +1,8 @@
 import express, { Request, Response } from "express"
 import mysql from "mysql"
 import cors from "cors"
-import bodyParser from "body-parser"
 
 const app = express()
-app.use(bodyParser.json())
 app.use(cors())
 
 const dbc = mysql.createConnection({
@@ -23,7 +21,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.post('/userData', (req: Request, res: Response) => {
-    const query: string = `select * from userDB where userID = ${req.body.id} and password = ${req.body.password}`;
+    const query: string = `select * from userDB where userID = ${req.body.id}`;
     dbc.query(query, (err, rows) =>{
         if(err) return console.log(err);
         res.send(rows);
