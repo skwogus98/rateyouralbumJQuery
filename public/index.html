@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rate your album</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function login() {
+            var id1 = document.getElementById("id").value;
+            var pw = document.getElementById("password").value;
+            console.log(id1)
+            console.log(pw)
+            $.ajax({
+                type:"get",
+                url:"/userData",
+                data:{id : id1, password : pw},
+                success:function(dat){
+                    var userData = document.getElementsByClassName("userName")[0]
+                    var nickname = "<div class = 'userName'>" + JSON.stringify(dat[0].nickname) + "님 환영합니다.</div>";
+                    userData.innerHTML = nickname
+                    var loginDiv = document.getElementsByClassName("login")[0]
+                    loginDiv.style.visibility = "hidden"
+                }
+            })
+        }
+
+        document.onload=()=>{
+            let loginButton = document.getElementById("loginButton")
+            loginButton.onclick = login
+        }
+    </script>
+</head>
+<body>    
+    <div class="login">
+        <label id="login">ID</label>
+        <input type="text" name="id" placeholder="id" id="id">
+        <button id="loginButton" onclick="login()">로그인</button>
+        <br>
+        <label id="login">password</label>
+        <input type="text" name="password" placeholder="password" id="password">
+    </div>
+    <div class="userName">
+    </div>
+</body>
+</html>

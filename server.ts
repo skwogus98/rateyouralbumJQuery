@@ -5,6 +5,7 @@ import bodyParser from "body-parser"
 
 const app = express()
 app.use(cors())
+app.use(express.static('public'))
 
 const dbc = mysql.createConnection({
 	host: 'localhost',
@@ -19,15 +20,12 @@ app.listen('3000', () => {
 	console.log('Server Started')
 })
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Success!');
-});
-
-app.post('/userData', (req: Request, res: Response) => {
-	console.log(req.query)
+app.get('/userData', (req: Request, res: Response) => {
+	console.log(req)
     const query: string = "select * from userDB where userID = ? and password = ?";
     dbc.query(query, [req.query.id, req.query.password] ,(err, rows) =>{
         if(err) return console.log(err);
+		console.log(rows)
         res.send(rows);
     })
 });
