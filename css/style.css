@@ -1,0 +1,14 @@
+.login{
+    
+}
+.userName{
+    width: 100%;
+    text-align: right;
+}
+#login{
+    display:inline-block;
+    width: 100px;
+}
+#loginButton{
+    width: 80px;
+}
