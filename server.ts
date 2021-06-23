@@ -29,3 +29,11 @@ app.get('/userData', (req: Request, res: Response) => {
         res.send(rows);
     })
 });
+
+app.get("/rateList", (req: Request, res: Response) => {
+  const query: string = "select * from rateListDB where userDB_id = ? ORDER BY rank"
+  dbc.query(query,[req.query.id], (err, rows) =>{
+    if(err) return console.log(err);
+    res.send(rows);
+  })
+})

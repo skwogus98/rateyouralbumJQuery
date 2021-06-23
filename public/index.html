@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,13 +23,29 @@
                     userData.innerHTML = nickname
                     var loginDiv = document.getElementsByClassName("login")[0]
                     loginDiv.style.visibility = "hidden"
+                    rateList(dat[0].id)
                 }
             })
         }
 
-        document.onload=()=>{
-            let loginButton = document.getElementById("loginButton")
-            loginButton.onclick = login
+        function rateList(userId) {
+            var table = document.getElementById("rateTable")
+            $.ajax({
+                type:"get",
+                url:"/rateList",
+                data:{id:userId},
+                success:function(dat){
+                    $.each(dat, (index, item) =>{
+                        let tr = "<tr>";
+                        tr += '<td>' + item.title + '</td>'
+                        tr += '<td>' + item.artist + '</td>'
+                        tr += '<td>' + item.rank + '</td>'
+                        tr += '</tr>'
+                        $("#rateTable").append(tr)
+                    })
+                    
+                }
+            })
         }
     </script>
 </head>
@@ -43,6 +59,15 @@
         <input type="text" name="password" placeholder="password" id="password">
     </div>
     <div class="userName">
+    </div>
+    <div class="userRate">
+        <table id="rateTable">
+            <tr>
+                <th>title</td>
+                <th>artist</td>
+                <th>rank</td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>
