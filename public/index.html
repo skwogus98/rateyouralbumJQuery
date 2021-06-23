@@ -47,6 +47,8 @@
                         tr += '</tr>'
                         $("#rateTable").append(tr)
                     })
+					let updateButton = "<button type="button" onclick="updateRank()">갱신</button>"
+					$(#rateTable).append()
                     
                 }
             })
@@ -79,20 +81,13 @@
     </div>
     <div class="userName">
     </div>
-    <div class="userRate" style="display: block;">
+    <div class="userRate" style="display: none;">
         <table id="rateTable">
             <tr>
                 <th>   </td>
                 <th>title</td>
                 <th>artist</td>
                 <th>rank</td>
-            </tr>
-            <!--test-->
-            <tr>
-                <td >1</td>
-                <td>asdf</td>
-                <td>asdf</td>
-                <td><input class="rank" value="1"></td>
             </tr>
         </table>
     </div>
