@@ -137,23 +137,23 @@ INSERT INTO songDB (id, title, trackNo, albumDB_id) VALUES
 (null, 'veridis quo', 11, 1),
 (null, 'short circuit', 12, 1),
 (null, 'face to face', 13, 1),
-(null, 'too long', 14, 1),
+(null, 'too long', 14, 1);
 
 
 INSERT INTO rateListDB (id, rank, albumDB_id, userDB_id) VALUES
-(null, 1, 1, 1)
-(null, 2, 2, 1)
-(null, 3, 3, 1)
-(null, 4, 4, 1)
-(null, 5, 5, 1)
-(null, 6, 6, 1)
-(null, 7, 7, 1)
-(null, 8, 8, 1)
-(null, 9, 9, 1)
-(null, 10, 10, 1)
-(null, 11, 11, 1)
-(null, 12, 12, 1)
-(null, 13, 13, 1)
-(null, 14, 14, 1)
-(null, 15, 15, 1)
-(null, 16, 16, 1)
+(null, 1, 1, 1),
+(null, 2, 2, 1),
+(null, 3, 3, 1),
+(null, 4, 4, 1),
+(null, 5, 5, 1),
+(null, 6, 6, 1),
+(null, 7, 7, 1),
+(null, 8, 8, 1),
+(null, 9, 9, 1),
+(null, 10, 10, 1),
+(null, 11, 11, 1),
+(null, 12, 12, 1),
+(null, 13, 13, 1),
+(null, 14, 14, 1),
+(null, 15, 15, 1),
+(null, 16, 16, 1);

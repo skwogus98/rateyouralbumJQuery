@@ -21,11 +21,9 @@ app.listen('3000', () => {
 })
 
 app.get('/userData', (req: Request, res: Response) => {
-	console.log(req)
     const query: string = "select * from userDB where userID = ? and password = ?";
     dbc.query(query, [req.query.id, req.query.password] ,(err, rows) =>{
         if(err) return console.log(err);
-		console.log(rows)
         res.send(rows);
     })
 });
