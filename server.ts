@@ -21,17 +21,15 @@ app.listen('3000', () => {
 })
 
 app.get('/userData', (req: Request, res: Response) => {
-	console.log(req)
     const query: string = "select * from userDB where userID = ? and password = ?";
     dbc.query(query, [req.query.id, req.query.password] ,(err, rows) =>{
         if(err) return console.log(err);
-		console.log(rows)
         res.send(rows);
     })
 });
 
 app.get("/rateList", (req: Request, res: Response) => {
-  const query: string = "select * from rateListDB where userDB_id = ? ORDER BY rank"
+  const query: string = "select * from rateListDB, artistDB, albumDB where userDB_id = ? and rateListDB.album_id = albumDB.id and albumDB.artistDB_id = artistDB.id ORDER BY rank"
   dbc.query(query,[req.query.id], (err, rows) =>{
     if(err) return console.log(err);
     res.send(rows);
