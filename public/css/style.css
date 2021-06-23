@@ -5,6 +5,9 @@
     width: 100%;
     text-align: right;
 }
+.userRate{
+    display: none;
+}
 #login{
     display:inline-block;
     width: 100px;
