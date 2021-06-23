@@ -29,7 +29,7 @@ app.get('/userData', (req: Request, res: Response) => {
 });
 
 app.get("/rateList", (req: Request, res: Response) => {
-  const query: string = "select * from rateListDB, artistDB, albumDB where userDB_id = ? and rateListDB.album_id = albumDB.id and albumDB.artistDB_id = artistDB.id ORDER BY rank"
+  const query: string = "select * from rateListDB, artistDB, albumDB where userDB_id = ? and rateListDB.albumDB_id = albumDB.id and albumDB.artistDB_id = artistDB.id ORDER BY rank"
   dbc.query(query,[req.query.id], (err, rows) =>{
     if(err) return console.log(err);
     res.send(rows);
