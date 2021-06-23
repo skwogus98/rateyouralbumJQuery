@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express"
 import mysql from "mysql"
 import cors from "cors"
-import bodyParser from "body-parser"
+import bodyParser, { json } from "body-parser"
 
 const app = express()
 app.use(cors())
@@ -31,6 +31,15 @@ app.get('/userData', (req: Request, res: Response) => {
 app.get("/rateList", (req: Request, res: Response) => {
   const query: string = "select * from rateListDB, artistDB, albumDB where userDB_id = ? and rateListDB.albumDB_id = albumDB.id and albumDB.artistDB_id = artistDB.id ORDER BY rank"
   dbc.query(query,[req.query.id], (err, rows) =>{
+    if(err) return console.log(err);
+    res.send(rows);
+  })
+})
+
+app.get("/updateRate", (req: Request, res: Response) => {
+  const query: string = "UPDATE rateListDB SET rank = ? WHERE userDB_id = ? and rank = ?"
+  const arr = new Array(req.query.data);
+  dbc.query(query,[req.query.newRank, req.query.userId, req.query.rank], (err, rows) =>{
     if(err) return console.log(err);
     res.send(rows);
   })

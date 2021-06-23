@@ -21,6 +21,7 @@
                     var userData = document.getElementsByClassName("userName")[0]
                     var nickname = "<div class = 'userName'>" + JSON.stringify(dat[0].nickname) + "님 환영합니다.</div>";
                     userData.innerHTML = nickname
+                    userData.id = dat.id
                     var loginDiv = document.getElementsByClassName("login")[0]
                     loginDiv.style.visibility = "hidden"
                     rateList(dat[0].id)
@@ -39,16 +40,31 @@
                 success:function(dat){
                     $.each(dat, (index, item) =>{
                         let tr = "<tr>";
-                        tr += '<td><img src="https://rateyouralbumjquery-ebgqk.run.goorm.io/image/' + item.id + '.jpg"></td>'
+                        tr += '<td><img src="https://rateyouralbumjquery-ebgqk.run.goorm.io/image/' + item.id + '.jpg" width="200" height = "200"></td>'
                         tr += '<td>' + item.title + '</td>'
                         tr += '<td>' + item.name + '</td>'
-                        tr += '<td>' + item.rank + '</td>'
+                        tr += '<td><input class="rank" value="' + item.rank + '"></td>'
                         tr += '</tr>'
                         $("#rateTable").append(tr)
                     })
                     
                 }
             })
+        }
+        function updateRank(){
+            var userData = document.getElementsByClassName("userName")[0]
+            var rankTable = document.getElementsByClassName("rank")
+            $.each(rankTable, (index, rank) =>{
+                $.ajax({
+                    type:"get",
+                    url:"/updateRate",
+                    data: {newRank:rank.value, userId:Number(userData.id), rank:index},
+                    success:function(){
+                        location.reload();
+                    }
+                })
+            })
+            
         }
     </script>
 </head>
@@ -63,13 +79,20 @@
     </div>
     <div class="userName">
     </div>
-    <div class="userRate" style="display: none;">
+    <div class="userRate" style="display: block;">
         <table id="rateTable">
             <tr>
                 <th>   </td>
                 <th>title</td>
                 <th>artist</td>
                 <th>rank</td>
+            </tr>
+            <!--test-->
+            <tr>
+                <td >1</td>
+                <td>asdf</td>
+                <td>asdf</td>
+                <td><input class="rank" value="1"></td>
             </tr>
         </table>
     </div>
