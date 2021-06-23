@@ -30,7 +30,7 @@
 
         function rateList(userId) {
             var table = document.getElementById("rateTable")
-            var div = document.getElementsByClassName("userRate")
+            var div = document.getElementsByClassName("userRate")[0]
             div.style.display = "block"
             $.ajax({
                 type:"get",
@@ -39,7 +39,7 @@
                 success:function(dat){
                     $.each(dat, (index, item) =>{
                         let tr = "<tr>";
-                        tr += '<td><img scr="https://rateyouralbumjquery-ebgqk.run.goorm.io/image/' + item.id + '.jpg"></td>'
+                        tr += '<td><img src="https://rateyouralbumjquery-ebgqk.run.goorm.io/image/' + item.id + '.jpg"></td>'
                         tr += '<td>' + item.title + '</td>'
                         tr += '<td>' + item.name + '</td>'
                         tr += '<td>' + item.rank + '</td>'
@@ -63,7 +63,7 @@
     </div>
     <div class="userName">
     </div>
-    <div class="userRate" style="display: block;">
+    <div class="userRate" style="display: none;">
         <table id="rateTable">
             <tr>
                 <th></td>
