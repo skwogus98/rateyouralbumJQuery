@@ -8,7 +8,7 @@
     <title>rate your album</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function login() {
+        function loginFunc() {
             var id1 = document.getElementById("id").value;
             var pw = document.getElementById("password").value;
             console.log(id1)
@@ -74,7 +74,7 @@
     <div class="login">
         <label id="login">ID</label>
         <input type="text" name="id" placeholder="id" id="id">
-        <button id="loginButton" onclick="login()">로그인</button>
+        <button id="loginButton" onclick="loginFunc()">로그인</button>
         <br>
         <label id="login">password</label>
         <input type="text" name="password" placeholder="password" id="password">
