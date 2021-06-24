@@ -37,7 +37,7 @@ app.get("/rateList", (req: Request, res: Response) => {
 })
 
 app.get("/updateRate", (req: Request, res: Response) => {
-  const query: string = "UPDATE rateListDB SET rank = ? WHERE userDB_id = ? and rank = ?"
+  const query: string = "UPDATE rateListDB SET rank = ? WHERE userDB_id = ? and albumDB_id = ?"
   const arr = new Array(req.query.data);
   dbc.query(query,[req.query.newRank, req.query.userId, req.query.rank], (err, rows) =>{
     if(err) return console.log(err);
