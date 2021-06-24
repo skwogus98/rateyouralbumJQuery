@@ -8,7 +8,7 @@
     <title>rate your album</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function loginFunc() {
+        function login() {
             var id1 = document.getElementById("id").value;
             var pw = document.getElementById("password").value;
             console.log(id1)
@@ -21,7 +21,7 @@
                     var userData = document.getElementsByClassName("userName")[0]
                     var nickname = "<div class = 'userName'>" + JSON.stringify(dat[0].nickname) + "님 환영합니다.</div>";
                     userData.innerHTML = nickname
-                    userData.id = dat.id
+                    userData.id = JSON.stringify(dat[0].id)
                     var loginDiv = document.getElementsByClassName("login")[0]
                     loginDiv.style.visibility = "hidden"
                     rateList(dat[0].id)
@@ -57,10 +57,11 @@
             var userData = document.getElementsByClassName("userName")[0]
             var rankTable = document.getElementsByClassName("rank")
             $.each(rankTable, (index, rank) =>{
+				console.log(rank.id)
                 $.ajax({
                     type:"get",
                     url:"/updateRate",
-                    data: {newRank:rank.value, userId:Number(userData.id), albumDB_id:rank.id},
+                    data: {newRank:rank.value, userId:Number(userData.id), albumDB_id:Number(rank.id)},
                     success:function(){
                         location.reload();
                     }
@@ -74,7 +75,7 @@
     <div class="login">
         <label id="login">ID</label>
         <input type="text" name="id" placeholder="id" id="id">
-        <button id="loginButton" onclick="loginFunc()">로그인</button>
+        <button id="loginButton" onclick="login()">로그인</button>
         <br>
         <label id="login">password</label>
         <input type="text" name="password" placeholder="password" id="password">
