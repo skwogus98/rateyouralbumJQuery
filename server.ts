@@ -41,6 +41,7 @@ app.get("/updateRate", (req: Request, res: Response) => {
   const arr = new Array(req.query.data);
   dbc.query(query,[req.query.newRank, req.query.userId, req.query.rank], (err, rows) =>{
     if(err) return console.log(err);
+	console.log(req.query.newRank, req.query.userId, req.query.rank);
     res.send(rows);
   })
 })
