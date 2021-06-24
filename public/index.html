@@ -21,7 +21,7 @@
                     var userData = document.getElementsByClassName("userName")[0]
                     var nickname = "<div class = 'userName'>" + JSON.stringify(dat[0].nickname) + "님 환영합니다.</div>";
                     userData.innerHTML = nickname
-                    userData.id = dat.id
+                    userData.id = JSON.stringify(dat[0].id)
                     var loginDiv = document.getElementsByClassName("login")[0]
                     loginDiv.style.visibility = "hidden"
                     rateList(dat[0].id)
