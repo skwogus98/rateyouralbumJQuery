@@ -39,10 +39,18 @@ app.get("/rateList", (req: Request, res: Response) => {
 app.get("/updateRate", (req: Request, res: Response) => {
   console.log(req.query);
   const query: string = "UPDATE rateListDB SET rank = ? WHERE userDB_id = ? and albumDB_id = ?"
-  const arr = new Array(req.query.data);
   dbc.query(query,[req.query.newRank, req.query.userId, req.query.albumDB_id], (err, rows) =>{
     if(err) return console.log(err);
 	console.log(req.query.newRank, req.query.userId, req.query.rank);
+    res.send(rows);
+  })
+})
+
+app.get("/showSong", (req: Request, res: Response) => {
+  console.log(req.query);
+  const query: string = "select * from songDB where albumDB_id = ? order by trackNo"
+  dbc.query(query,[req.query.albumDB_id], (err, rows) =>{
+    if(err) return console.log(err);
     res.send(rows);
   })
 })
